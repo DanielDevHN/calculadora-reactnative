@@ -8,8 +8,19 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'black',
     },
-    texto: {
+    calculadoraContainer: {
+        flex: 1,
+        paddingHorizontal: 20,
+        justifyContent: 'flex-end',
+    },
+    textResultado: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 60,
+        textAlign: 'right',
+    },
+    textHistorial: {
+        color: 'rgba(255,255,255,0.5)',
+        fontSize: 30,
+        textAlign: 'right',
     },
 });
