@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import { SafeAreaView } from 'react-native';
+import CalculadoraScreen from './src/screens/CalculadoraScreen';
 
 const App = () => {
   return (
-    <View>
-      <Text>Calculadora</Text>
-    </View>
+    <SafeAreaView>
+      <CalculadoraScreen />
+    </SafeAreaView>
   );
 };
 
