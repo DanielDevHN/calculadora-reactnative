@@ -16,7 +16,7 @@ const CalculadoraScreen = () => {
 
     const limpiar = () => {
         setNumero('0');
-
+        setNumeroAnterior('0');
     };
 
     const armarNumero = ( numeroTexto: string ) => {
@@ -99,10 +99,38 @@ const CalculadoraScreen = () => {
         ultimaOperacion.current = Operadores.sumar;
     };
 
+    const calcular = () => {
+        const num1 = Number( numero );
+        const num2 = Number( numeroAnterior );
+        
+        switch ( ultimaOperacion.current ) {
+            case Operadores.sumar:
+                setNumero( `${ num1 + num2 }` );
+                break;
+            case Operadores.restar:
+                setNumero( `${ num2 - num1 }` );
+                break;
+            case Operadores.multiplicar:
+                setNumero( `${ num1 * num2 }` );
+                break;
+            case Operadores.dividir:
+                if ( num1 === 0 ) {
+                    setNumero("Can't divide by zero");
+                } else {
+                    setNumero( `${ num2 / num1 }` );
+                }
+                break;
+        }
+        setNumeroAnterior('0');
+    };
+
+
 
   return (
     <View style={ styles.calculadoraContainer}>
-      <Text style={ styles.textHistorial }>{ numeroAnterior }</Text>
+        { numeroAnterior !== '0' && (
+            <Text style={ styles.textHistorial }>{ numeroAnterior }</Text>
+        )}
       <Text
         style={ styles.textResultado }
         numberOfLines={ 1 }
@@ -143,7 +171,7 @@ const CalculadoraScreen = () => {
       <View style={ styles.fila}>
         <BotonCalc texto="0" accion={ armarNumero } ancho/>
         <BotonCalc texto="." accion={ armarNumero } />
-        <BotonCalc texto="=" color="#FF9427" accion={ limpiar }/>
+        <BotonCalc texto="=" color="#FF9427" accion={ calcular }/>
       </View>
 
     </View>
